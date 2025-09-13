@@ -16,34 +16,75 @@ client.once("ready", () => {
   console.log(`Bot logged in as ${client.user.tag}`);
 });
 
-client.on("messageCreate", async (msg) => {
-  if (msg.author.bot) return; // bỏ qua bot
+const prefix = "!"; // ký tự bắt đầu lệnh
 
-  // gửi message Discord -> Roblox
-  const payload = {
-    topic: TOPIC,
-    message: `${msg.author.username}: ${msg.content}`
-  };
+client.once("ready", () => {
+  console.log(`Bot đã đăng nhập với ${client.user.tag}`);
+});
 
-  try {
-    const response = await fetch(`https://apis.roblox.com/cloud/v2/universes/${UNIVERSE_ID}:publishMessage`, {
-      method: "POST",
-      headers: {
-        "x-api-key": ROBLOX_API_KEY,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
+client.on("messageCreate", async (message) => {
+  // Bỏ qua tin nhắn từ bot
+  if (message.author.bot) return;
 
-    if (response.ok) {
-      console.log("Sent to Roblox:", payload.message);
-    } else {
-      const err = await response.text();
-      console.error("Failed to send:", err);
+  // Kiểm tra xem có phải lệnh không
+  if (!message.content.startsWith(prefix)) return;
+
+  // Tách lệnh và tham số
+  const args = message.content.slice(prefix.length).trim().split(/ +/);
+  const command = args.shift().toLowerCase();
+
+  // Ví dụ lệnh ping
+  if (command === "ping") {
+    message.reply("Pong!");
+  }
+
+  // Ví dụ lệnh gửi tin nhắn đến Roblox
+  if (command === "send") {
+    const content = args.join(" ");
+    if (!content) {
+      return message.reply("❌ Bạn cần nhập nội dung tin nhắn.");
     }
-  } catch (err) {
-    console.error("Error:", err);
+
+    try {
+      const response = await fetch(
+        `https://apis.roblox.com/cloud/v2/universes/${UNIVERSE_ID}:publishMessage`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": ROBLOX_API_KEY,
+          },
+          body: JSON.stringify({
+            topic: "discord",
+            message: content,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        message.reply("✅ Tin nhắn đã gửi đến Roblox!");
+      } else {
+        const err = await response.text();
+        message.reply(`⚠️ Lỗi khi gửi: ${err}`);
+      }
+    } catch (err) {
+      console.error(err);
+      message.reply("⚠️ Có lỗi khi kết nối Roblox.");
+    }
   }
 });
 
 client.login(DISCORD_TOKEN);
+
+const express = require('express');
+const app = express();
+
+const PORT = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+  res.send('Bot đang chạy!');
+});
+
+app.listen(PORT, () => {
+  console.log(`Server HTTP đang mở tại cổng ${PORT}`);
+});

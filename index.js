@@ -1,5 +1,6 @@
 import { Client, GatewayIntentBits } from "discord.js";
 import fetch from "node-fetch";
+import express from "express";
 
 const ROBLOX_API_KEY = process.env.ROBLOX_API_KEY;
 const UNIVERSE_ID = process.env.UNIVERSE_ID;
@@ -76,7 +77,6 @@ client.on("messageCreate", async (message) => {
 
 client.login(DISCORD_TOKEN);
 
-const express = require('express');
 const app = express();
 
 const PORT = process.env.PORT || 3000;

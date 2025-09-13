@@ -1,7 +1,5 @@
 import { Client, GatewayIntentBits } from "discord.js";
 import fetch from "node-fetch";
-import dotenv from "dotenv";
-dotenv.config();
 
 const ROBLOX_API_KEY = process.env.ROBLOX_API_KEY;
 const UNIVERSE_ID = process.env.UNIVERSE_ID;

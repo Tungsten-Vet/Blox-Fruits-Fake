@@ -1,5 +1,5 @@
 const { Client, GatewayIntentBits } = require("discord.js");
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
 
 const ROBLOX_API_KEY = process.env.ROBLOX_API_KEY;
 const UNIVERSE_ID = process.env.UNIVERSE_ID;

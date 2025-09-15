@@ -11,7 +11,7 @@ const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
 });
 
-async function toRoblox(command,username,arg) {
+async function toRoblox(message,command,username,arg) {
   const content = JSON.stringify({
     command: command,
     username: username,
@@ -83,7 +83,7 @@ client.on("messageCreate", async (message) => {
 
   const username = args[0];  
   const arg = args.slice(1).join(" ");
-
+  console.log(command,username,arg)
   if (commands[command]) {
     try {
       await commands[command](message);
@@ -92,7 +92,7 @@ client.on("messageCreate", async (message) => {
       message.reply("⚠️ Có lỗi khi chạy lệnh.");
     }
   }else if (robloxCommands[command]) {
-    toRoblox(command,username,arg)
+    toRoblox(message,command,username,arg)
   }else {
     message.reply("❓ Không có lệnh này.");
   }

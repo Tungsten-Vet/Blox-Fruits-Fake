@@ -51,12 +51,25 @@ const prefix = "/";
 // Bảng command
 
 const robloxCommands = {
-  "verify" : 1,"send" : 2,"retry" : 3,"kick" : 4,"ban" : 5,"unban" : 6,"lag" : 7
+  "verify" : 1,
+  "send" : 2,
+  "retry" : 3,
+  "kick" : 4,
+  "ban" : 5,
+  "unban" : 6,
+  "lag" : 7, 
+  "help" : 8,
+  "pass" : 9,
+  "code" : 10,
 }
 
 const commands = {
   ping: async (message) => {
     message.reply("Pong!");
+
+  ditmemay: async (message) => {
+    message.reply("ditnhau");
+  }
   },
 
   sendToRoblox: async (message, username , arg) => {

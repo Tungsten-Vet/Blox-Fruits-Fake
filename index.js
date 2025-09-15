@@ -91,7 +91,7 @@ client.on("messageCreate", async (message) => {
       console.error(err);
       message.reply("⚠️ Có lỗi khi chạy lệnh.");
     }
-  } if (robloxCommands[command]) {
+  }else if (robloxCommands[command]) {
     toRoblox(command,username,arg)
   }else {
     message.reply("❓ Không có lệnh này.");

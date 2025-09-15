@@ -11,7 +11,7 @@ const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
 });
 
-async function toRoblox(message,command,username,arg) {
+async function toRoblox(command,username,arg) {
   const content = JSON.stringify({
     command: command,
     username: username,
@@ -51,7 +51,7 @@ const prefix = "/";
 // Bảng command
 
 const robloxCommands = {
-  verify,send,retry,kick,ban,unban,lag
+  "verify" : 1,"send" : 2,"retry" : 3,"kick" : 4,"ban" : 5,"unban" : 6,"lag" : 7
 }
 
 const commands = {
@@ -92,7 +92,7 @@ client.on("messageCreate", async (message) => {
       message.reply("⚠️ Có lỗi khi chạy lệnh.");
     }
   } if (robloxCommands[command]) {
-
+    toRoblox(command,username,arg)
   }else {
     message.reply("❓ Không có lệnh này.");
   }

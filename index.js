@@ -54,22 +54,23 @@ const robloxCommands = {
   "verify" : 1,
   "send" : 2,
   "retry" : 3,
-  "kick" : 4,
-  "ban" : 5,
-  "unban" : 6,
+  "rkick" : 4,
+  "rban" : 5,
+  "runban" : 6,
   "lag" : 7, 
   "help" : 8,
   "pass" : 9,
   "code" : 10,
+  "rec" : 11,
 }
 
 const commands = {
   ping: async (message) => {
-    message.reply("Pong!");
+    message.reply("Pong!");  
+  },
 
   ditmemay: async (message) => {
     message.reply("ditnhau");
-  }
   },
 
   sendToRoblox: async (message, username , arg) => {

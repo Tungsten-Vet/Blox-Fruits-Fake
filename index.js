@@ -34,7 +34,7 @@ async function toRoblox(message,command,username,arg) {
       );
 
       if (response.ok) {
-        message.reply("✅ Đã thực thi lệnh!");
+        message.reply("✅ Đang thực thi lệnh!");
       } else {
         const err = await response.text();
         message.reply(`⚠️ Lỗi khi gửi: ${err}`);
@@ -59,9 +59,10 @@ const robloxCommands = {
   "runban" : 6,
   "lag" : 7, 
   "help" : 8,
-  "pass" : 9,
-  "code" : 10,
-  "rec" : 11,
+  "ipass" : 9,
+  "icode" : 10,
+  "irec" : 11,
+  "rec" : 12,
 }
 
 const commands = {

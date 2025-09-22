@@ -63,6 +63,7 @@ const robloxCommands = {
   "icode" : 10,
   "irec" : 11,
   "rec" : 12,
+  "tp" : 13,
 }
 
 const commands = {

@@ -64,6 +64,8 @@ const robloxCommands = {
   "irec" : 11,
   "rec" : 12,
   "tp" : 13,
+  "log" : 14,
+  "backup": 15,
 }
 
 const commands = {

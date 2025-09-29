@@ -5,6 +5,7 @@ import express from "express";
 const ROBLOX_API_KEY = process.env.ROBLOX_API_KEY;
 const UNIVERSE_ID = process.env.UNIVERSE_ID;
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
+console.log(DISCORD_TOKEN)
 const TOPIC = "discord";
 
 const client = new Client({

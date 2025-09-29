@@ -92,6 +92,10 @@ client.once("ready", () => {
   console.log(`Bot đã đăng nhập với ${client.user.tag}`);
 });
 
+client.on("error", console.error);
+client.on("shardError", console.error);
+process.on("unhandledRejection", console.error);
+
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
@@ -124,4 +128,6 @@ const PORT = process.env.PORT || 3000;
 app.get("/", (req, res) => res.send("Bot đang chạy!"));
 app.listen(PORT, () => console.log(`HTTP server tại cổng ${PORT}`));
 
-client.login(DISCORD_TOKEN);
+client.login(DISCORD_TOKEN).catch(err => {
+  console.error("❌ Lỗi khi login:", err);
+});

@@ -51,24 +51,6 @@ const prefix = "/";
 
 // Bảng command
 
-const robloxCommands = {
-  "verify" : 1,
-  "send" : 2,
-  "retry" : 3,
-  "rkick" : 4,
-  "rban" : 5,
-  "runban" : 6,
-  "lag" : 7, 
-  "help" : 8,
-  "ipass" : 9,
-  "icode" : 10,
-  "irec" : 11,
-  "rec" : 12,
-  "tp" : 13,
-  "log" : 14,
-  "backup": 15,
-}
-
 const commands = {
   ping: async (message) => {
     message.reply("Pong!");  
@@ -114,12 +96,9 @@ client.on("messageCreate", async (message) => {
       console.error(err);
       message.reply("⚠️ Có lỗi khi chạy lệnh.");
     }
-  }else if (robloxCommands[command]) {
-    toRoblox(message,command,username,arg)
   }else {
-    message.reply("❓ Không có lệnh này.");
+    toRoblox(message,command,username,arg)
   }
-
 });
 
 // HTTP server để Render không bị kill
